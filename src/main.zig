@@ -30,6 +30,8 @@ pub const grapheme = @import("grapheme");
 pub const Event = @import("event.zig").Event;
 pub const Unicode = @import("Unicode.zig");
 
+pub const vxfw = @import("vxfw/vxfw.zig");
+
 pub const Tty = tty.Tty;
 
 /// The size of the terminal screen
@@ -73,16 +75,6 @@ pub const logo =
     \\ ▀▄▀  █   █ █   █ ▄█▄ ▀▄▄▄▀
 ;
 
-test {
-    _ = @import("gwidth.zig");
-    _ = @import("Cell.zig");
-    _ = @import("Key.zig");
-    _ = @import("Parser.zig");
-    _ = @import("Window.zig");
-
-    _ = @import("gwidth.zig");
-    _ = @import("queue.zig");
-    _ = @import("widgets/TextInput.zig");
-
-    _ = @import("Loop.zig");
+test "refAllDecls" {
+    std.testing.refAllDecls(@This());
 }
