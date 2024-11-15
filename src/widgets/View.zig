@@ -70,10 +70,10 @@ pub fn draw(self: *View, win: Window, opts: DrawOptions) void {
     const height = @min(win.height, self.screen.height - opts.y_off);
 
     for (0..height) |row| {
-        const src_start = opts.x_off + ((row + opts.y_off) * self.screen.width);
-        const src_end = src_start + width;
-        const dst_start = win.x_off + ((row + win.y_off) * win.screen.width);
-        const dst_end = dst_start + width;
+        const src_start: usize = @intCast(opts.x_off + ((@as(u16, @intCast(row)) + opts.y_off) * self.screen.width));
+        const src_end: usize = @intCast(src_start + width);
+        const dst_start: usize = @intCast(win.x_off + ((@as(u16, @intCast(row)) + win.y_off) * win.screen.width));
+        const dst_end: usize = @intCast(dst_start + width);
         @memcpy(win.screen.buf[dst_start..dst_end], self.screen.buf[src_start..src_end]);
     }
 }
