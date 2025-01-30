@@ -60,8 +60,9 @@ pub const Panic = struct {
 
 /// Resets terminal state on a panic, then calls the default zig panic handler
 pub fn panic_handler(msg: []const u8, error_return_trace: ?*std.builtin.StackTrace, ret_addr: ?usize) noreturn {
+    _ = error_return_trace; // autofix
     recover();
-    std.debug.defaultPanic(msg, error_return_trace, ret_addr);
+    std.debug.defaultPanic(msg, ret_addr);
 }
 
 /// Resets the terminal state using the global tty instance. Use this only to recover during a panic
